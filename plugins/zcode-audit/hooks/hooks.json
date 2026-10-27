@@ -1,0 +1,87 @@
+{
+  "description": "zcode-audit：会话审计 Hook（工具调用 / 参数 / 结果 / 用户输入）",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "bash",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/audit-recorder.sh"],
+            "timeoutMs": 5000,
+            "statusMessage": "记录会话开始…"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "process",
+            "command": "bash",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/audit-recorder.sh"],
+            "timeoutMs": 5000,
+            "statusMessage": "记录输入…"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "bash",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/audit-recorder.sh"],
+            "timeoutMs": 5000,
+            "statusMessage": "记录工具调用…"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "bash",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/audit-recorder.sh"],
+            "timeoutMs": 5000,
+            "statusMessage": "记录执行结果…"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "bash",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/audit-recorder.sh"],
+            "timeoutMs": 5000,
+            "statusMessage": "记录失败…"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "process",
+            "command": "bash",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/audit-recorder.sh"],
+            "timeoutMs": 8000,
+            "statusMessage": "归档会话…"
+          }
+        ]
+      }
+    ]
+  }
+}

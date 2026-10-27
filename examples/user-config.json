@@ -1,0 +1,93 @@
+{
+  "_说明": "这是用户级 Hook 配置的完整示例。把本文件内容合并进 ~/.zcode/cli/config.json 的 hooks 字段；scripts/ 路径换成你自己的绝对路径。",
+  "_关键点": [
+    "1. 必须设置 hooks.enabled 为 true，否则整个 hooks 配置不生效",
+    "2. 用户级配置的挂载点是 hooks.events，插件的 hooks/hooks.json 则是 hooks 直接当事件表用 —— 两者层级不同，别混",
+    "3. 项目级（<workspace>/.zcode/config.json 或 zcode.json）的 hooks 当前版本会被整体忽略，日志记为 config_project_hooks_ignored",
+    "4. 配置在 session 启动时形成快照，改完必须新建 session 才生效",
+    "5. 脚本必须退出码 0；stdout 保持为空，诊断写 stderr"
+  ],
+  "hooks": {
+    "enabled": true,
+    "timeoutMs": 10000,
+    "maxOutputBytes": 32768,
+    "events": {
+      "SessionStart": [
+        {
+          "matcher": "*",
+          "hooks": [
+            {
+              "type": "process",
+              "command": "bash",
+              "args": ["/绝对路径/zcode-audit/hooks/audit-recorder.sh"],
+              "timeoutMs": 5000
+            }
+          ]
+        }
+      ],
+      "UserPromptSubmit": [
+        {
+          "hooks": [
+            {
+              "type": "process",
+              "command": "bash",
+              "args": ["/绝对路径/zcode-audit/hooks/audit-recorder.sh"],
+              "timeoutMs": 5000
+            }
+          ]
+        }
+      ],
+      "PreToolUse": [
+        {
+          "matcher": "*",
+          "hooks": [
+            {
+              "type": "process",
+              "command": "bash",
+              "args": ["/绝对路径/zcode-audit/hooks/audit-recorder.sh"],
+              "timeoutMs": 5000
+            }
+          ]
+        }
+      ],
+      "PostToolUse": [
+        {
+          "matcher": "*",
+          "hooks": [
+            {
+              "type": "process",
+              "command": "bash",
+              "args": ["/绝对路径/zcode-audit/hooks/audit-recorder.sh"],
+              "timeoutMs": 5000
+            }
+          ]
+        }
+      ],
+      "PostToolUseFailure": [
+        {
+          "matcher": "*",
+          "hooks": [
+            {
+              "type": "process",
+              "command": "bash",
+              "args": ["/绝对路径/zcode-audit/hooks/audit-recorder.sh"],
+              "timeoutMs": 5000
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "process",
+              "command": "bash",
+              "args": ["/绝对路径/zcode-audit/hooks/audit-recorder.sh"],
+              "timeoutMs": 8000
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "zcode-audit-market",
+  "description": "团队内部插件市场：ZCode 会话审计（zcode-audit）",
+  "pluginRoot": "plugins",
+  "allowCrossMarketplaceDependenciesOn": [],
+  "plugins": [
+    {
+      "name": "zcode-audit",
+      "source": "./zcode-audit",
+      "description": "会话审计：记录每次工具调用（工具名、参数、结果、耗时）与用户输入，落盘为可检索的 JSONL 审计日志",
+      "version": "1.0.0",
+      "category": "开发者工具",
+      "tags": ["审计", "合规", "hook", "安全"],
+      "strict": true
+    }
+  ]
+}

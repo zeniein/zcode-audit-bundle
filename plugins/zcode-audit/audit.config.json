@@ -1,0 +1,9 @@
+{
+  "dataDir": "~/.zcode/audit",
+  "includePrompt": true,
+  "includeResult": true,
+  "includeTranscript": true,
+  "maxValueLength": 2000,
+  "maxRecordBytes": 131072,
+  "transcriptThrottleMs": 5000
+}
